@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import userIcon from "../assets/man-user-circle-icon.svg";
-
+import { useAuth } from "../store/AuthContext";
 const DoctorDashboard = () => {
   const [recentPatients, setRecentPatients] = useState([]);
   const [totalMoney, setTotalMoney] = useState(0);
-  const apiUrl = "http://localhost:3000/api/reports/doctor/67727871761b02761a201a8f";
+  const { userID } = useAuth();
+
+  const apiUrl = `http://localhost:3000/api/reports/doctor/${userID()}`;
 
   useEffect(() => {
     // Fetch data from API
